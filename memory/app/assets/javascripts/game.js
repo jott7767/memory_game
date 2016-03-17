@@ -11,11 +11,12 @@ $(document).ready(function() {
   function keep() {
     $('.reveal').addClass('keep').removeClass('reveal text-box');
     revealed.push(1);
-    win();
   }
 
   function win() {
-    if(revealed.length == 8) {
+    if(revealed.length < 8) {
+      alert('You found a match!');
+    } else {
       alert('You won!');
     }
   }
@@ -24,9 +25,9 @@ $(document).ready(function() {
   function check() {
     if(twoFlip.length == 2) {
       if(twoFlip[0] === twoFlip[1]) {
-        keep()
+        keep();
         twoFlip = [];
-        alert('You found a match!')
+        win();
       } else {
           alert("They don't match")
           turnBack();
