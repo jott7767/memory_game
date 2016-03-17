@@ -9,7 +9,7 @@ $(document).ready(function() {
   }
 
   function keep() {
-    $('.reveal').addClass('keep').removeClass('reveal text-box').unbind('click');
+    $('.reveal').addClass('keep').removeClass('reveal text-box');
     revealed.push(1);
     win();
   }
@@ -37,7 +37,9 @@ $(document).ready(function() {
 
   $('.text-box').click(function() {
     if( $(this).hasClass('reveal') ){
-      $(this).unbind('click');
+      $(this).off('click');
+    } else if ( $(this).hasClass('keep') ) {
+      $(this).off('click');
     } else {
       var card = $(this).addClass('reveal').removeClass('text-box');
       twoFlip.push(card.html());
@@ -48,6 +50,7 @@ $(document).ready(function() {
   $('#play').click(function() {
     if(confirm('Are you sure?')) {
       $('.keep').addClass('text-box').removeClass('keep');
+      $('.text-box').on('click');
       revealed = [];
     }
   });
